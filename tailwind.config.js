@@ -4,6 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  safelist: [
+    "bg-primary", "hover:bg-white", "hover:text-primary", "hover:border-primary",
+    "bg-secondary", "hover:text-secondary", "hover:border-secondary",
+    "bg-success", "hover:text-success", "hover:border-success",
+    "bg-warning", "hover:text-warning", "hover:border-warning",
+    "bg-danger", "hover:text-danger", "hover:border-danger",
+    "bg-light", "hover:text-light", "hover:border-light",
+    "bg-dark", "hover:text-dark", "hover:border-dark"
+  ],
   theme: {
     extend: {
       colors: {

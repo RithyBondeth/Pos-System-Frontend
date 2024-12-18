@@ -8,7 +8,7 @@ import Sidebar from "@/components/sidebar/index.vue";
     <!-- Sidebar -->
     <Sidebar />
     <!-- Main Content -->
-    <main class="overflow-x-hidden">
+    <main class="overflow-x-hidden w-full">
       <slot />
     </main>
   </div>
