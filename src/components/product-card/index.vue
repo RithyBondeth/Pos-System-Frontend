@@ -25,21 +25,21 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-full flex items-center justify-between rounded-lg p-1 bg-light">
+  <div class="w-full flex items-center justify-between gap-5 rounded-lg p-1 bg-light">
     <div class="flex items-center gap-2">
       <div
-        class="h-24 w-32 rounded-lg bg-center bg-cover bg-no-repeat"
+        class="h-24 min-w-32 rounded-lg bg-center bg-cover bg-no-repeat bg-white"
         :style="{ backgroundImage: `url(${image})` }"
       />
       <div class="flex flex-col gap-1 items-start">
-        <p class="text-md font-semibold">{{ name }}</p>
+        <p class="text-sm font-semibold line-clamp-2">{{ name }}</p>
         <p class="text-xs">Orders: {{ order }} order</p>
       </div>
     </div>
     <div class="flex flex-col items-end gap-1 px-2">
       <p
         :class="[
-          'text-sm font-semibold',
+          'text-sm font-semibold line-clamp-2',
           isOutStock && 'text-red-500 text-sm font-semibold',
         ]"
       >

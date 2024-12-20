@@ -3,14 +3,14 @@
 import InformationCard from "@/components/information-card/index.vue";
 import ProductCard from "@/components/product-card/index.vue";
 import GoogleIcon from "@/components/utilities/google-icon.vue";
-import { popularProducts } from "./data.ts";
+import { mostOrderedProducts, popularProducts } from "./data.ts";
 import { ref } from "vue";
 
 const lists = ref([1, 2, 3, 4, 5]);
 </script>
 
 <template>
-  <div class="p-5 flex flex-col items-start gap-5">
+  <div class="p-5 flex flex-col items-start gap-8">
     <!-- Header Label -->
     <h2 class="text-2xl font-bold">Dashboard</h2>
 
@@ -64,7 +64,7 @@ const lists = ref([1, 2, 3, 4, 5]);
         <!-- Product Card -->
         <div class="mt-5 flex flex-col items-start gap-3">
           <ProductCard
-            v-for="item in popularProducts"
+            v-for="item in mostOrderedProducts"
             :key="item"
             :image="item.image"
             :name="item.name"
