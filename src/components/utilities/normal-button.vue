@@ -13,7 +13,7 @@ defineProps({
 </script>
 <template>
   <button
-    :class="`px-2 py-2 rounded-md border-2 border-transparent duration-300 text-sm text-white bg-${color} hover:bg-white hover:text-${color} hover:border-${color} hover:scale-105`"
+    :class="`px-2 py-2 rounded-md border-2 border-transparent duration-300 text-sm text-white bg-${color} hover:bg-transparent hover:text-${color} hover:border-${color} hover:scale-105`"
   >
     <slot />
   </button>

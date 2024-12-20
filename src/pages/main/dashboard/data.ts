@@ -40,3 +40,46 @@ export const popularProducts = [
         isOutStock: true,
     }
 ];
+
+export const mostOrderedProducts = [
+    {
+        id: 1, 
+        name: 'Xiaomi Pad 6s Pro',
+        order: '890',
+        image: 'https://i.ytimg.com/vi/-M4ouJ3jg9w/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAWWsi1NE0J8LCmE1R7mFMYFJrNWQ',
+        price: '499.00',
+        isOutStock: true,
+    },
+    {
+        id: 2, 
+        name: 'Techno Spark Go 2024',
+        order: '1195',
+        image: 'https://www.jibalzone.com/media/7311/conversions/66ec17ed5907b_64f42ddc7065980041bf21cf5947964f-42946-slider.jpg',
+        price: '89.00',
+        isOutStock: false,
+    },
+    {
+        id: 3, 
+        name: 'Huawei Matepad 11.5s Papermatted Edition',
+        order: '696',
+        image: 'https://gagadget.com/media/post_big/Huawei_MatePad_11.5_S_new_update.jpg',
+        price: '499.00',
+        isOutStock: false,
+    },
+    {
+        id: 4, 
+        name: 'Oppo Find X 8 Pro',
+        order: '1142',
+        image: 'https://heyupnow.com/cdn/shop/files/4ee0482982cfa89bb4d1cff3333a55e6_f9b22608-b6ca-481c-9927-0a309be6a9b2_600x600.png?v=1729244402',
+        price: '1299.00',
+        isOutStock: false,
+    },
+    {
+        id: 5, 
+        name: 'iPhone 14 Pro Max',
+        order: '2172',
+        image: 'https://istorepreowned.co.za/cdn/shop/products/iPhone_14_Pro_Silver_Pure_Back_iPhone_14_Pro_Silver_Pure_Front_2-up_Screen__USEN_4b96c250-3660-48f3-8597-895cff61df5a.png?v=1710874121&width=1800',
+        price: '850.00',
+        isOutStock: false,
+    }
+];

@@ -29,4 +29,22 @@
     .text-xxs {
         @apply text-[10px];
     }
-}
+    table {
+        @apply border-collapse !border border-gray-300;
+    }
+    th, td {
+      @apply p-3 !border text-sm;
+    }
+    th {
+      @apply text-start !font-bold;
+    }
+    thead {
+      @apply bg-gray-100;
+    }
+    .modal-background {
+      @apply  fixed top-0 left-0 right-0 bottom-0 !backdrop-blur-sm !bg-black/30;
+    }
+    .modal {
+       @apply absolute top-1/2 left-1/2 !-translate-x-1/2 !-translate-y-1/2;
+    }
+  }
