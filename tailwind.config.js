@@ -23,7 +23,7 @@ export default {
         danger: '#e74c3c',
         light: '#ecf0f1',
         dark: '#34495e',
-        'accent-light': '#6b7280',
+        'accent-light': '#9CA3AF',
       },
     },
   },
