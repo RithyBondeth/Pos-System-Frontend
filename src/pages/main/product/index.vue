@@ -39,9 +39,13 @@ const categories = ref([
 
     <!-- Category -->
     <div class="w-full flex flex-col items-start gap-5">
-      <div class="w-full flex items-center justify-between">
+      <div
+        class="w-full flex items-center justify-between gap-3 phone-xl:flex-col phone-xl:items-start"
+      >
         <p class="text-xl font-bold">Categories</p>
-        <NormalButton @click="showCategoryModal = true">Add New Category</NormalButton>
+        <NormalButton @click="showCategoryModal = true" class="tablet-lg:text-xs"
+          >Add New Category</NormalButton
+        >
       </div>
       <div class="w-full flex items-center gap-5 py-1 overflow-x-scroll no-scrollbar">
         <CategoryCard v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" :key="item" />
@@ -49,12 +53,16 @@ const categories = ref([
     </div>
 
     <div class="w-full flex flex-col gap-5">
-      <div class="w-full flex items-center justify-between">
+      <div
+        class="w-full flex items-center justify-between gap-3 phone-xl:flex-col phone-xl:items-start"
+      >
         <p class="text-xl font-bold">Products</p>
-        <NormalButton @click="showAddProductModal = true"> Add New Product </NormalButton>
+        <NormalButton @click="showAddProductModal = true" class="tablet-lg:text-xs">
+          Add New Product
+        </NormalButton>
       </div>
       <!-- Table -->
-      <div class="w-full">
+      <div class="w-full overflow-x-scroll">
         <table class="w-full">
           <!-- head -->
           <thead>
@@ -119,7 +127,7 @@ const categories = ref([
 
   <!-- Add Category Modal -->
   <div class="modal-background" v-if="showCategoryModal">
-    <div class="modal w-1/3 rounded-xl p-5 bg-white">
+    <div class="modal modal-width rounded-xl p-5 bg-white">
       <div class="flex flex-col items-start gap-2">
         <!-- Category Header Section -->
         <div class="w-full space-y-2">
@@ -172,7 +180,7 @@ const categories = ref([
 
   <!-- Add Product Modal -->
   <div class="modal-background" v-if="showAddProductModal">
-    <div class="modal w-1/3 rounded-xl p-5 bg-white">
+    <div class="modal modal-width rounded-xl p-5 bg-white">
       <div class="flex flex-col items-start gap-2">
         <!-- Product Header Section -->
         <div class="w-full space-y-2">
@@ -266,7 +274,7 @@ const categories = ref([
 
   <!-- Edit Product Modal -->
   <div class="modal-background" v-if="showEditProductModal">
-    <div class="modal w-1/3 rounded-xl p-5 bg-white">
+    <div class="modal modal-width rounded-xl p-5 bg-white">
       <div class="flex flex-col items-start gap-2">
         <!-- Product Header Section -->
         <div class="w-full space-y-2">

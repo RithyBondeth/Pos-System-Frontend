@@ -27,7 +27,9 @@ const lists = ref([1, 2, 3, 4, 5]);
     </div>
 
     <!-- Product Card List -->
-    <div class="w-full flex items-start justify-between gap-5 my-3">
+    <div
+      class="w-full flex items-start justify-between gap-5 my-3 laptop:flex-col laptop:[&>div]:w-full"
+    >
       <!-- Left Side -->
       <div class="w-1/2 p-5 shadow-md rounded-lg bg-white">
         <!-- Header Label -->
