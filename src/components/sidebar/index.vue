@@ -4,19 +4,41 @@ import Divider from "@/components/utilities/divider.vue";
 import GoogleIcon from "@/components/utilities/google-icon.vue";
 import SidebarMenu from "@/components/sidebar/sidebar-menu/index.vue";
 import { sidebarMenu, appLogo, avatar } from "./data.ts";
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
+// Sidebar toggle state
 const closeSidebar = ref(false);
 const toggleSidebar = () => (closeSidebar.value = !closeSidebar.value);
+
+// Router utilities
 const router = useRouter();
 const route = useRoute();
+
+// Window width and responsive handling
+const windowWidth = ref(window.innerWidth);
+const handleSidebarResponsive = () => (closeSidebar.value = windowWidth.value <= 750);
+
+// Listen to window resize
+const updateWindowWidth = () => {
+  windowWidth.value = window.innerWidth;
+  handleSidebarResponsive();
+};
+
+// Check responsive state on initial load and resize
+onMounted(() => {
+  handleSidebarResponsive(); // Check on mount
+  window.addEventListener("resize", updateWindowWidth); // Add listener
+});
+onUnmounted(() => {
+  window.removeEventListener("resize", updateWindowWidth); // Remove listener
+});
 </script>
 
 <template>
   <div
     :class="[
-      closeSidebar ? 'min-w-fit' : 'min-w-72',
+      closeSidebar ? 'min-w-fit' : 'min-w-72 laptop:min-w-60',
       'h-screen sticky top-0 left-0 shadow-sm duration-300 transition-all bg-white',
     ]"
   >

@@ -25,10 +25,12 @@ defineProps({
 </script>
 
 <template>
-  <div class="w-full flex items-center justify-between gap-5 rounded-lg p-1 bg-light">
-    <div class="flex items-center gap-2">
+  <div
+    class="w-full flex items-center justify-between gap-5 rounded-lg p-1 bg-light tablet-sm:p-5"
+  >
+    <div class="flex items-center justify-between gap-2">
       <div
-        class="h-24 min-w-32 rounded-lg bg-center bg-cover bg-no-repeat bg-white"
+        class="h-24 min-w-32 rounded-lg bg-center bg-cover bg-no-repeat bg-white tablet-sm:hidden"
         :style="{ backgroundImage: `url(${image})` }"
       />
       <div class="flex flex-col gap-1 items-start">
@@ -39,7 +41,7 @@ defineProps({
     <div class="flex flex-col items-end gap-1 px-2">
       <p
         :class="[
-          'text-sm font-semibold line-clamp-2',
+          'text-sm font-semibold line-clamp-1',
           isOutStock && 'text-red-500 text-sm font-semibold',
         ]"
       >
