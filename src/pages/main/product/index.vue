@@ -7,9 +7,17 @@ import { alldProducts } from "./data";
 import { ref } from "vue";
 import Divider from "@/components/utilities/divider.vue";
 import GoogleIcon from "@/components/utilities/google-icon.vue";
+import Select from "primevue/select";
 
 const showProductModal = ref<boolean>(false);
 const showCategoryModal = ref<boolean>(false);
+
+const selectedCategory = ref<String | null>(null);
+const categories = ref([
+  { label: "Mobile Phone", value: "mobile" },
+  { label: "Tablet", value: "tablet" },
+  { label: "Laptop", value: "laptop" },
+]);
 </script>
 
 <template>
@@ -94,34 +102,122 @@ const showCategoryModal = ref<boolean>(false);
 
   <!-- Add Category Modal -->
   <div class="modal-background" v-if="showCategoryModal">
-    <div class="modal w-1/2 rounded-lg p-5 bg-white">
-      <form class="flex flex-col items-start gap-2">
-        <div class="w-full flex justify-between items-center">
-          <h2 class="text-xl font-bold">Add New Category</h2>
-          <GoogleIcon icon="close" @click="showCategoryModal = false" />
-        </div>
-        <Divider />
-        <!-- Image Upload Section -->
-        <div class="flex flex-col items-center gap-1">
-          <div class="size-40 flex justify-center items-center bg-light">
-            <GoogleIcon icon="photo" />
+    <div class="modal w-1/3 rounded-xl p-6 bg-white">
+      <div class="flex flex-col items-start gap-2">
+        <!-- Category Header Section -->
+        <div class="w-full space-y-2">
+          <div class="w-full flex justify-between items-center">
+            <h2 class="text-xl font-bold">Add New Category</h2>
+            <GoogleIcon icon="close" @click="showCategoryModal = false" />
           </div>
-          <p class="text-sm underline">Change Icon</p>
+          <Divider />
         </div>
-        <!-- Information Section -->
-        <div class="flex flex-col items-start">
-          <label for="name">Category Name</label>
-          <input type="text" name="name" id="name" placeholder="Enter Category Name..." />
-        </div>
-      </form>
+        <!-- Information Form Section -->
+        <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
+          <!-- Image Upload Section -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="size-40 flex justify-center items-center bg-light">
+              <GoogleIcon icon="photo" />
+            </div>
+            <p class="text-sm underline">Upload Catagory Icon</p>
+          </div>
+          <!-- Category Name Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="category-name">Name</label>
+            <input
+              type="text"
+              name="category-name"
+              id="category-name"
+              class="custom-input"
+              placeholder="Enter Category Name"
+            />
+          </div>
+          <!-- Description Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="category-description">Description</label>
+            <textarea
+              name="category-description"
+              id="category-description"
+              placeholder="Write your category description here..."
+              rows="5"
+              class="custom-input"
+            />
+          </div>
+          <!-- Group Button Section -->
+          <div class="w-full flex justify-end gap-1">
+            <NormalButton color="dark" type="reset">Cancel</NormalButton>
+            <NormalButton type="submit">Save</NormalButton>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
   <!-- Add Product Modal -->
-  <div class="modal-background" v-if="showProductModal" @click="showProductModal = false">
-    <div class="modal size-1/2 rounded-lg p-5 bg-white">
-      <h2 class="text-2xl font-bold">Add New Product</h2>
-      <Divider />
+  <div class="modal-background" v-if="showProductModal">
+    <div class="modal w-1/3 rounded-xl p-6 bg-white">
+      <div class="flex flex-col items-start gap-2">
+        <!-- Product Header Section -->
+        <div class="w-full space-y-2">
+          <div class="w-full flex justify-between items-center">
+            <h2 class="text-xl font-bold">Add New Product</h2>
+            <GoogleIcon icon="close" @click="showProductModal = false" />
+          </div>
+          <Divider />
+        </div>
+        <!-- Information Form Section -->
+        <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
+          <!-- Image Upload Section -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="size-40 flex justify-center items-center bg-light">
+              <GoogleIcon icon="photo" />
+            </div>
+            <p class="text-sm underline">Upload Product Image</p>
+          </div>
+          <!-- Product Name Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="product-name">Name</label>
+            <input
+              type="text"
+              name="product-name"
+              id="product-name"
+              class="custom-input"
+              placeholder="Enter Product Name"
+            />
+          </div>
+          <!-- Menu Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="category">Category</label>
+            <div
+              class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+            >
+              <Select
+                v-model="selectedCategory"
+                :options="categories"
+                optionLabel="label"
+                placeholder="Select Category"
+                class="w-full"
+              />
+            </div>
+          </div>
+          <!-- Description Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="product-description">Description</label>
+            <textarea
+              name="product-description"
+              id="product-description"
+              placeholder="Write your product description here"
+              rows="5"
+              class="custom-input"
+            />
+          </div>
+          <!-- Group Button Section -->
+          <div class="w-full flex justify-end gap-1">
+            <NormalButton color="dark" type="reset">Cancel</NormalButton>
+            <NormalButton type="submit">Save</NormalButton>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
