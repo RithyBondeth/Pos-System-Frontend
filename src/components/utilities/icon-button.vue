@@ -21,7 +21,7 @@ defineProps({
 <template>
   <button
     :class="[
-      `px-2 py-2 rounded-md border-2 border-transparent duration-300 text-sm text-white bg-${color} hover:bg-transparent hover:text-${color} hover:border-${color} hover:scale-105`,
+      `px-2 py-2 rounded-md border-2 border-transparent duration-300 flex justify-center items-center text-sm text-white bg-${color} hover:bg-transparent hover:text-${color} hover:border-${color} hover:scale-105`,
       icon && 'flex items-center gap-1',
     ]"
   >
