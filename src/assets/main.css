@@ -54,6 +54,6 @@
       @apply !p-3 outline-none rounded-xl w-full !text-sm bg-light;
     }
     .p-select-list-container {
-      @apply  bg-white p-4 mt-4 rounded-xl !shadow-sm text-sm [&>ul]:space-y-4;
+      @apply  bg-white p-4 mt-4 rounded-xl !shadow-lg text-sm [&>ul]:space-y-4;
     }
   }
