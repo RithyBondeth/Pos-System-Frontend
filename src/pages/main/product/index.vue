@@ -21,6 +21,32 @@ const categories = ref([
   { label: "Tablet", value: "tablet" },
   { label: "Laptop", value: "laptop" },
 ]);
+
+const imageFileInput = ref<HTMLInputElement | null>(null);
+
+const imageFileUrl = ref<String | null>(null);
+
+// Trigger file input dialog when the buton is clicked
+const triggerImageFileInput = (): void => {
+  imageFileInput.value?.click();
+};
+
+// Handle image file change via input
+const handleImageFileChange = (e: Event): void => {
+  const input = e.target as HTMLInputElement;
+  const file = input.files?.[0];
+
+  if (file && file.type.startsWith("image/"))
+    imageFileUrl.value = URL.createObjectURL(file);
+};
+
+//Clear Image File
+const clearImageFile = (): void => {
+  imageFileUrl.value = null;
+  imageFileInput.value = null;
+};
+
+// Add new product
 </script>
 
 <template>
@@ -141,10 +167,33 @@ const categories = ref([
         <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
           <!-- Image Upload Section -->
           <div class="flex flex-col items-center gap-2">
-            <div class="size-36 flex justify-center items-center bg-light">
-              <GoogleIcon icon="photo" />
+            <div
+              :class="[
+                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                imageFileUrl == null && 'bg-light',
+              ]"
+              :style="{ backgroundImage: `url(${imageFileUrl})` }"
+            >
+              <GoogleIcon
+                icon="close"
+                :class="[
+                  'absolute top-1 right-1 cursor-pointer',
+                  imageFileUrl == null && 'hidden',
+                ]"
+                @click="clearImageFile"
+              />
+              <input
+                type="file"
+                class="hidden"
+                @change="handleImageFileChange"
+                accept="image/*"
+                ref="imageFileInput"
+              />
+              <GoogleIcon icon="photo" :class="imageFileUrl && 'hidden'" />
             </div>
-            <p class="text-xs underline">Upload Catagory Icon</p>
+            <p class="text-xs underline cursor-pointer" @click="triggerImageFileInput">
+              Upload Catagory Icon
+            </p>
           </div>
           <!-- Category Name Section -->
           <div class="w-full flex flex-col items-start gap-2">
@@ -194,10 +243,33 @@ const categories = ref([
         <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
           <!-- Image Upload Section -->
           <div class="flex flex-col items-center gap-2">
-            <div class="size-36 flex justify-center items-center bg-light">
-              <GoogleIcon icon="photo" />
+            <div
+              :class="[
+                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                imageFileUrl == null && 'bg-light',
+              ]"
+              :style="{ backgroundImage: `url(${imageFileUrl})` }"
+            >
+              <GoogleIcon
+                icon="close"
+                :class="[
+                  'absolute top-1 right-1 cursor-pointer',
+                  imageFileUrl == null && 'hidden',
+                ]"
+                @click="clearImageFile"
+              />
+              <input
+                type="file"
+                class="hidden"
+                @change="handleImageFileChange"
+                accept="image/*"
+                ref="imageFileInput"
+              />
+              <GoogleIcon icon="photo" :class="imageFileUrl && 'hidden'" />
             </div>
-            <p class="text-xs underline">Upload Product Image</p>
+            <p class="text-xs underline cursor-pointer" @click="triggerImageFileInput">
+              Upload Product Image
+            </p>
           </div>
           <div class="w-full flex items-center justify-between gap-2">
             <!-- Product Name Section -->
@@ -288,10 +360,33 @@ const categories = ref([
         <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
           <!-- Image Upload Section -->
           <div class="flex flex-col items-center gap-2">
-            <div class="size-36 flex justify-center items-center bg-light">
-              <GoogleIcon icon="photo" />
+            <div
+              :class="[
+                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                imageFileUrl == null && 'bg-light',
+              ]"
+              :style="{ backgroundImage: `url(${imageFileUrl})` }"
+            >
+              <GoogleIcon
+                icon="close"
+                :class="[
+                  'absolute top-1 right-1 cursor-pointer',
+                  imageFileUrl == null && 'hidden',
+                ]"
+                @click="clearImageFile"
+              />
+              <input
+                type="file"
+                class="hidden"
+                @change="handleImageFileChange"
+                accept="image/*"
+                ref="imageFileInput"
+              />
+              <GoogleIcon icon="photo" :class="imageFileUrl && 'hidden'" />
             </div>
-            <p class="text-xs underline">Change Product Image</p>
+            <p class="text-xs underline cursor-pointer" @click="triggerImageFileInput">
+              Change Product Image
+            </p>
           </div>
           <div class="w-full flex items-center justify-between gap-2">
             <!-- Product Name Section -->
