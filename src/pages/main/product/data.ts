@@ -1,3 +1,11 @@
+export const allCategories = [
+    { label: "Mobile Phone", value: "mobile", icon: "phone" },
+    { label: "Tablet", value: "tablet", icon: "smartphone" },
+    { label: "Laptop", value: "laptop", icon: "laptop" },
+    { label: "Watch", value: "watch", icon: "watch" },
+    { label: "Accessories", value: "accessories", icon: "widgets" },
+]
+
 export const alldProducts = [
     {
         id: 1, 

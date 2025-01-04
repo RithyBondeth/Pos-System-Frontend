@@ -2,19 +2,18 @@
 //@ts-nocheck
 import NormalButton from "@/components/utilities/normal-button.vue";
 import Select from "primevue/select";
-import { alldProducts } from "../product/data";
+import { allCategories, alldProducts } from "../product/data";
 import { ref } from "vue";
 import { ProductStatusE, ProductStockE } from "./type";
 import IconButton from "@/components/utilities/icon-button.vue";
 import GoogleIcon from "@/components/utilities/google-icon.vue";
 
 const selectedStatus = ref<ProductStatusE>(ProductStatusE.All);
-const selectedCategory = ref<String | null>("Mobile Phone");
-const categories = ref([
-  { label: "Mobile Phone", value: "mobile" },
-  { label: "Tablet", value: "tablet" },
-  { label: "Laptop", value: "laptop" },
-]);
+const selectedCategory = ref<String | null>(allCategories[0].label);
+const categories = ref(allCategories);
+
+const selectedNewStockCategory = ref<String | null>(allCategories[0].label);
+const newStockCategories = ref(allCategories);
 
 const selectedStock = ref<ProductStockE>(ProductStockE.InStock);
 const stockStatus = ref([
@@ -24,6 +23,9 @@ const stockStatus = ref([
 ]);
 
 const showAddStockModal = ref<boolean>(false);
+const showEditStockModal = ref<boolean>(false);
+const showDeleteStockModal = ref<boolean>(false);
+
 const imageFileInput = ref<HTMLInputElement | null>(null);
 const imageFileUrl = ref<String | null>(null);
 
@@ -185,14 +187,14 @@ const clearImageFile = (): void => {
                     color="success"
                     icon="edit"
                     class="text-xs"
-                    @click="showEditProductModal = true"
+                    @click="showEditStockModal = true"
                     >Edit</IconButton
                   >
                   <IconButton
                     color="danger"
                     icon="delete"
                     class="text-xs"
-                    @click="showDeleteProductModal = true"
+                    @click="showDeleteStockModal = true"
                     >Delete</IconButton
                   >
                 </div>
@@ -267,8 +269,8 @@ const clearImageFile = (): void => {
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
               >
                 <Select
-                  v-model="selectedCategory"
-                  :options="categories"
+                  v-model="selectedNewStockCategory"
+                  :options="newStockCategories"
                   optionLabel="label"
                   placeholder="Select Category"
                   class="w-full"
@@ -318,6 +320,138 @@ const clearImageFile = (): void => {
           </div>
         </form>
       </div>
+    </div>
+  </div>
+
+  <!-- Edit New Stock Modal -->
+  <div class="modal-background" v-if="showEditStockModal">
+    <div class="modal modal-width rounded-xl p-5 bg-white">
+      <div class="flex flex-col items-start gap-2">
+        <!-- Product Header Section -->
+        <div class="w-full space-y-2">
+          <div class="w-full flex justify-between items-center">
+            <h2 class="text-xl font-bold">Edit Stock</h2>
+            <GoogleIcon icon="close" @click="showEditStockModal = false" />
+          </div>
+          <Divider />
+        </div>
+        <!-- Information Form Section -->
+        <form action="" class="w-full flex flex-col items-start gap-5 mt-2">
+          <!-- Image Upload Section -->
+          <div class="flex flex-col items-center gap-2">
+            <div
+              :class="[
+                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                imageFileUrl == null && 'bg-light',
+              ]"
+              :style="{ backgroundImage: `url(${imageFileUrl})` }"
+            >
+              <GoogleIcon
+                icon="close"
+                :class="[
+                  'absolute top-1 right-1 cursor-pointer',
+                  imageFileUrl == null && 'hidden',
+                ]"
+                @click="clearImageFile"
+              />
+              <input
+                type="file"
+                class="hidden"
+                @change="handleImageFileChange"
+                accept="image/*"
+                ref="imageFileInput"
+              />
+              <GoogleIcon icon="photo" :class="imageFileUrl && 'hidden'" />
+            </div>
+            <p class="text-xs underline cursor-pointer" @click="triggerImageFileInput">
+              Upload Product Image
+            </p>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
+            <!-- Product Name Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="product-name" class="text-[15px]">Name</label>
+              <input
+                type="text"
+                name="product-name"
+                id="product-name"
+                class="custom-input"
+                placeholder="Enter Product Name"
+              />
+            </div>
+            <!--  Product Category Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="category" class="text-[15px]">Category</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedNewStockCategory"
+                  :options="newStockCategories"
+                  optionLabel="label"
+                  placeholder="Select Category"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
+            <!-- Product Price Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="product-price" class="text-[15px]">Price</label>
+              <input
+                type="text"
+                name="product-price"
+                id="product-price"
+                class="custom-input"
+                placeholder="Enter Product Price"
+              />
+            </div>
+            <!-- Product Stock Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="product-stock" class="text-[15px]">Stock</label>
+              <input
+                type="number"
+                name="product-stock"
+                id="product-stock"
+                class="custom-input"
+                placeholder="Enter Product Stock"
+              />
+            </div>
+          </div>
+          <!-- Description Section -->
+          <div class="w-full flex flex-col items-start gap-2">
+            <label for="product-description" class="text-[15px]">Description</label>
+            <textarea
+              name="product-description"
+              id="product-description"
+              placeholder="Write your product description here"
+              rows="5"
+              class="custom-input"
+            />
+          </div>
+          <!-- Group Button Section -->
+          <div class="w-full flex justify-end gap-2">
+            <NormalButton color="dark" type="reset">Cancel</NormalButton>
+            <NormalButton type="submit">Save</NormalButton>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Stock Modal Section -->
+  <div class="modal-background" v-if="showDeleteStockModal">
+    <div class="modal rounded-xl p-5 bg-white">
+      <form class="flex flex-col items-start gap-5">
+        <p class="text-md">Are you sure you want to delete this stock?</p>
+        <div class="w-full flex items-center justify-end gap-2">
+          <NormalButton color="danger" class="px-3" @click="showDeleteStockModal = false">
+            No
+          </NormalButton>
+          <NormalButton color="success" class="px-3" type="submit">Yes</NormalButton>
+        </div>
+      </form>
     </div>
   </div>
 </template>
