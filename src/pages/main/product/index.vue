@@ -3,7 +3,7 @@
 import NormalButton from "@/components/utilities/normal-button.vue";
 import IconButton from "@/components/utilities/icon-button.vue";
 import CategoryCard from "@/components/category-card/index.vue";
-import { alldProducts } from "./data";
+import { allCategories, alldProducts } from "./data";
 import { ref } from "vue";
 import Divider from "@/components/utilities/divider.vue";
 import GoogleIcon from "@/components/utilities/google-icon.vue";
@@ -16,14 +16,9 @@ const showEditProductModal = ref<boolean>(false);
 const showDeleteProductModal = ref<boolean>(false);
 
 const selectedCategory = ref<String | null>(null);
-const categories = ref([
-  { label: "Mobile Phone", value: "mobile" },
-  { label: "Tablet", value: "tablet" },
-  { label: "Laptop", value: "laptop" },
-]);
+const categories = ref(allCategories);
 
 const imageFileInput = ref<HTMLInputElement | null>(null);
-
 const imageFileUrl = ref<String | null>(null);
 
 // Trigger file input dialog when the buton is clicked
@@ -74,7 +69,13 @@ const clearImageFile = (): void => {
         >
       </div>
       <div class="w-full flex items-center gap-5 py-1 overflow-x-scroll no-scrollbar">
-        <CategoryCard v-for="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" :key="item" />
+        <CategoryCard
+          v-for="item in allCategories"
+          :key="item"
+          :label="item.label"
+          :item="5"
+          :icon="item.icon"
+        />
       </div>
     </div>
 
