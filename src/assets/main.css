@@ -51,7 +51,7 @@
       @apply w-1/3 laptop:w-[55%] tablet-lg:min-w-[65%] tablet-sm:min-w-[75%] phone-xl:!w-[85%];
     }
     .custom-input {
-      @apply !p-3 outline-none rounded-xl w-full !text-sm bg-light;
+      @apply !p-4 outline-none rounded-3xl w-full !text-sm bg-light;
     }
     .p-select-list-container {
       @apply  bg-white p-4 mt-4 rounded-xl !shadow-lg text-sm [&>ul]:space-y-4;

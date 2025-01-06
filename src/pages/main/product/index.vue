@@ -3,6 +3,7 @@
 import NormalButton from "@/components/utilities/normal-button.vue";
 import IconButton from "@/components/utilities/icon-button.vue";
 import CategoryCard from "@/components/category-card/index.vue";
+import CustomInput from "@/components/utilities/input-custom.vue";
 import { allCategories, alldProducts } from "./data";
 import { ref } from "vue";
 import Divider from "@/components/utilities/divider.vue";
@@ -170,7 +171,7 @@ const clearImageFile = (): void => {
           <div class="flex flex-col items-center gap-2">
             <div
               :class="[
-                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                'relative size-36 flex justify-center items-center rounded-xl bg-center bg-cover bg-no-repeat',
                 imageFileUrl == null && 'bg-light',
               ]"
               :style="{ backgroundImage: `url(${imageFileUrl})` }"
@@ -199,12 +200,11 @@ const clearImageFile = (): void => {
           <!-- Category Name Section -->
           <div class="w-full flex flex-col items-start gap-2">
             <label for="category-name" class="text-[15px]">Name</label>
-            <input
+            <CustomInput
               type="text"
-              name="category-name"
               id="category-name"
-              class="custom-input"
-              placeholder="Enter Category Name"
+              name="category-name"
+              placeholder="Category Name"
             />
           </div>
           <!-- Description Section -->
@@ -246,7 +246,7 @@ const clearImageFile = (): void => {
           <div class="flex flex-col items-center gap-2">
             <div
               :class="[
-                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                'relative size-36 flex justify-center items-center rounded-xl bg-center bg-cover bg-no-repeat',
                 imageFileUrl == null && 'bg-light',
               ]"
               :style="{ backgroundImage: `url(${imageFileUrl})` }"
@@ -276,12 +276,11 @@ const clearImageFile = (): void => {
             <!-- Product Name Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-name" class="text-[15px]">Name</label>
-              <input
+              <CustomInput
                 type="text"
-                name="product-name"
                 id="product-name"
-                class="custom-input"
-                placeholder="Enter Product Name"
+                name="product-name"
+                placeholder="Product Name"
               />
             </div>
             <!--  Product Category Section -->
@@ -304,23 +303,21 @@ const clearImageFile = (): void => {
             <!-- Product Price Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-price" class="text-[15px]">Price</label>
-              <input
+              <CustomInput
                 type="text"
-                name="product-price"
                 id="product-price"
-                class="custom-input"
-                placeholder="Enter Product Price"
+                name="product-price"
+                placeholder="Product Price"
               />
             </div>
             <!-- Product Stock Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-stock" class="text-[15px]">Stock</label>
-              <input
+              <CustomInput
                 type="number"
-                name="product-stock"
                 id="product-stock"
-                class="custom-input"
-                placeholder="Enter Product Stock"
+                name="product-stock"
+                placeholder="Product Stock"
               />
             </div>
           </div>
@@ -363,7 +360,7 @@ const clearImageFile = (): void => {
           <div class="flex flex-col items-center gap-2">
             <div
               :class="[
-                'relative size-36 flex justify-center items-center bg-center bg-cover bg-no-repeat',
+                'relative size-36 flex justify-center items-center rounded-xl bg-center bg-cover bg-no-repeat',
                 imageFileUrl == null && 'bg-light',
               ]"
               :style="{ backgroundImage: `url(${imageFileUrl})` }"
@@ -393,12 +390,11 @@ const clearImageFile = (): void => {
             <!-- Product Name Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-name" class="text-[15px]">Name</label>
-              <input
+              <CustomInput
                 type="text"
-                name="product-name"
                 id="product-name"
-                class="custom-input"
-                placeholder="Enter Product Name"
+                name="product-name"
+                placeholder="Product Name"
               />
             </div>
             <!--  Product Category Section -->
@@ -421,23 +417,21 @@ const clearImageFile = (): void => {
             <!-- Product Price Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-price" class="text-[15px]">Price</label>
-              <input
+              <CustomInput
                 type="text"
-                name="product-price"
                 id="product-price"
-                class="custom-input"
-                placeholder="Enter Product Price"
+                name="product-price"
+                placeholder="Product Price"
               />
             </div>
             <!-- Product Stock Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="product-stock" class="text-[15px]">Stock</label>
-              <input
+              <CustomInput
                 type="number"
-                name="product-stock"
                 id="product-stock"
-                class="custom-input"
-                placeholder="Enter Product Stock"
+                name="product-stock"
+                placeholder="Product Stock"
               />
             </div>
           </div>
