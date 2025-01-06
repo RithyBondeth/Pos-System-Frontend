@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "@/pages/main/dashboard/index.vue";
-import Customer from "@/pages/main/customer/index.vue";
+import ManageStaff from "@/pages/main/manage-staff/index.vue";
 import Product from "@/pages/main/product/index.vue";
 import SaleReports from "@/pages/main/sale-reports/index.vue";
 import ManageStock from "@/pages/main/manage-stock/index.vue";
@@ -30,9 +30,9 @@ const routes = [
         component: ManageStock,
     },
     {
-        path: '/customer',
-        name: 'Customer',
-        component: Customer,
+        path: '/managestaff',
+        name: 'Manage Staff',
+        component: ManageStaff,
     },
     {
         path: '/setting',

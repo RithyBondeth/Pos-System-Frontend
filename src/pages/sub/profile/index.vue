@@ -11,7 +11,7 @@ import IconButton from "@/components/utilities/icon-button.vue";
 
 const profileNavigator = ref<ProfileNavigatorE>(ProfileNavigatorE.MyProfile);
 const editProfile = ref<boolean>(false);
-const dashboardAccess = ref<boolean>(false);
+const showDeleteUserModal = ref<boolean>(false);
 const accessOptions = ref({
   dashboardAccess: true,
   productAccess: false,
@@ -23,10 +23,9 @@ const accessOptions = ref({
 </script>
 
 <template>
-  <div class="h-screen w-full p-5 flex flex-col items-start gap-5">
+  <div class="h-screen w-full overflow-y-hidden p-5 flex flex-col items-start gap-5">
     <!-- Header Label -->
     <p class="text-2xl font-bold">Profile</p>
-
     <!-- Profile Section -->
     <div class="size-full flex justify-between items-start gap-5">
       <!-- Left Side Section -->
@@ -61,7 +60,7 @@ const accessOptions = ref({
               <p class="text-md text-primary">Manager</p>
             </div>
           </div>
-          <NormalButton @click="editProfile = true" v-if="!editProfile" class="text-xs">
+          <NormalButton @click="editProfile = true" v-if="!editProfile">
             Edit Profile
           </NormalButton>
         </div>
@@ -104,7 +103,12 @@ const accessOptions = ref({
             </div>
             <div class="w-1/2 flex flex-col items-start gap-2">
               <label for="address">Address</label>
-              <CustomInput icon="map" id="address" name="address" placeholder="Address" />
+              <CustomInput
+                icon="location_on"
+                id="address"
+                name="address"
+                placeholder="Address"
+              />
             </div>
           </div>
           <!-- Email Section -->
@@ -153,17 +157,24 @@ const accessOptions = ref({
 
       <!-- Manage Access Section -->
       <div
-        class="h-full w-2/3 flex flex-col items-start gap-5 p-5 rounded-lg shadow-md bg-white"
+        class="h-[95%] w-2/3 flex flex-col items-start gap-5 overflow-y-scroll overflow-x-hidden no-scrollbar"
         v-if="profileNavigator === ProfileNavigatorE.ManageAccess"
       >
         <!-- Header Label -->
         <p class="text-2xl font-bold">Manage Access</p>
-        <!-- Access Section -->
-        <div class="w-full flex flex-col items-start gap-5">
-          <!-- Infomation Section -->
-          <div class="w-full flex justify-between items-center">
-            <div class="flex items-center gap-2">
-              <div class="size-20 rounded-full bg-light" />
+        <div
+          v-for="item in [1, 2, 3, 4, 5, 6]"
+          :key="item"
+          class="w-full rounded-lg shadow-md px-8 py-5 bg-white"
+        >
+          <!-- Access Section -->
+          <div class="w-full flex flex-col items-start gap-5">
+            <!-- Infomation Section -->
+            <div class="w-full flex justify-start items-center gap-2">
+              <div
+                class="size-20 rounded-full bg-center bg-cover bg-no-repeat bg-light"
+                :style="{ backgroundImage: `url(${''})` }"
+              />
               <div class="flex flex-col items-start gap-2">
                 <div class="flex items-center gap-2">
                   <p class="text-md font-bold">Seng Meyhorng</p>
@@ -172,53 +183,72 @@ const accessOptions = ref({
                 <p class="text-sm">sengmeyhorng123@gmail.com</p>
               </div>
             </div>
-            <div class="flex items-center gap-2">
-              <IconButton icon="edit" color="success" />
-              <IconButton icon="delete" color="danger" />
-            </div>
-          </div>
-          <!-- Option Access Section -->
-          <div class="w-full flex items-center gap-8">
-            <!-- Dashboard Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Dashboard</p>
-              <SwitchButton v-model="accessOptions.dashboardAccess" />
-            </div>
-            <!-- Product Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Product</p>
-              <SwitchButton v-model="accessOptions.productAccess" />
-            </div>
-            <!-- Stock Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Stock</p>
-              <SwitchButton v-model="accessOptions.stockAccess" />
-            </div>
-            <!-- Customer Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Customer</p>
-              <SwitchButton v-model="accessOptions.customerAccess" />
-            </div>
-            <!-- Report Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Report</p>
-              <SwitchButton v-model="accessOptions.reportAccess" />
-            </div>
-            <!-- Setting Access -->
-            <div class="flex flex-col items-center gap-2">
-              <p class="text-xs">Setting</p>
-              <SwitchButton v-model="accessOptions.settingAccess" />
+            <!-- Option Access Section -->
+            <div class="w-full flex items-center gap-8">
+              <!-- Dashboard Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Dashboard</p>
+                <SwitchButton v-model="accessOptions.dashboardAccess" />
+              </div>
+              <!-- Product Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Product</p>
+                <SwitchButton v-model="accessOptions.productAccess" />
+              </div>
+              <!-- Stock Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Stock</p>
+                <SwitchButton v-model="accessOptions.stockAccess" />
+              </div>
+              <!-- Customer Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Customer</p>
+                <SwitchButton v-model="accessOptions.customerAccess" />
+              </div>
+              <!-- Report Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Report</p>
+                <SwitchButton v-model="accessOptions.reportAccess" />
+              </div>
+              <!-- Setting Access -->
+              <div class="flex flex-col items-center gap-2">
+                <p class="text-xs">Setting</p>
+                <SwitchButton v-model="accessOptions.settingAccess" />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Delete User Modal -->
+      <div class="modal-background" v-if="showDeleteUserModal">
+        <div class="modal rounded-xl p-5 bg-white">
+          <form class="flex flex-col items-start gap-5">
+            <p class="text-md">Are you sure you want to delete this user?</p>
+            <div class="w-full flex items-center justify-end gap-2">
+              <NormalButton
+                color="danger"
+                class="px-3"
+                @click="showDeleteUserModal = false"
+              >
+                No
+              </NormalButton>
+              <NormalButton color="success" class="px-3" type="submit">Yes</NormalButton>
+            </div>
+          </form>
+        </div>
+      </div>
       <!-- Logout Section -->
       <div
-        class="h-full w-2/3 p-5 rounded-lg shadow-md bg-white"
+        class="h-fit w-2/3 p-5 flex flex-col items-start gap-5 rounded-lg shadow-md bg-white"
         v-if="profileNavigator === ProfileNavigatorE.Logout"
       >
-        Logout
+        <!-- Header Label -->
+        <p class="text-2xl font-bold">Logout</p>
+        <!-- Description -->
+        <p>Are you sure you want to logout from your account?</p>
+        <!-- Logout Button -->
+        <IconButton icon="logout" class="flex-row-reverse">Logout</IconButton>
       </div>
     </div>
   </div>

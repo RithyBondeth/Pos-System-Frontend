@@ -90,7 +90,7 @@ const clearImageFile = (): void => {
         </NormalButton>
       </div>
       <!-- Table -->
-      <div class="w-full overflow-x-scroll">
+      <div class="w-full overflow-x-scroll no-scrollbar bg-white">
         <table class="w-full">
           <!-- head -->
           <thead>
