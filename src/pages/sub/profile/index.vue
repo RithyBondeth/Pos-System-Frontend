@@ -2,7 +2,8 @@
 //@ts-nocheck
 import GoogleIcon from "@/components/utilities/google-icon.vue";
 import CustomInput from "@/components/utilities/input-custom.vue";
-import { profileMenus } from "./data";
+import Select from "primevue/select";
+import { gender, profileMenus } from "./data";
 import { ref } from "vue";
 import { ProfileNavigatorE } from "./type";
 import SwitchButton from "@/components/utilities/switch-button.vue";
@@ -10,6 +11,10 @@ import NormalButton from "@/components/utilities/normal-button.vue";
 import IconButton from "@/components/utilities/icon-button.vue";
 
 const profileNavigator = ref<ProfileNavigatorE>(ProfileNavigatorE.MyProfile);
+
+const selectedGender = ref(gender[0].label);
+const genders = ref(gender);
+
 const editProfile = ref<boolean>(false);
 const showDeleteUserModal = ref<boolean>(false);
 const accessOptions = ref({
@@ -46,7 +51,7 @@ const accessOptions = ref({
       <!-- Right Side Section -->
       <!-- My Profile Section -->
       <form
-        class="h-full w-2/3 flex flex-col items-start p-5 gap-5 rounded-lg shadow-md bg-white"
+        class="h-fit w-2/3 flex flex-col items-start p-5 gap-5 rounded-lg shadow-md bg-white"
         v-if="profileNavigator === ProfileNavigatorE.MyProfile"
       >
         <!-- Header Label -->
@@ -54,7 +59,7 @@ const accessOptions = ref({
         <!-- Profile Image Section -->
         <div class="w-full flex justify-between items-center">
           <div class="flex items-center gap-5">
-            <div class="size-32 rounded-full bg-light"></div>
+            <div class="size-28 rounded-full bg-light"></div>
             <div class="flex flex-col items-start gap-1">
               <p class="text-lg font-bold">Hem Rithybondeth</p>
               <p class="text-md text-primary">Manager</p>
@@ -63,13 +68,20 @@ const accessOptions = ref({
           <NormalButton @click="editProfile = true" v-if="!editProfile">
             Edit Profile
           </NormalButton>
+          <!-- Group Buttons Section -->
+          <div class="flex items-center justify-end gap-2" v-if="editProfile">
+            <NormalButton type="reset" color="danger" @click="editProfile = false">
+              Discard Changes
+            </NormalButton>
+            <NormalButton type="submit" color="success">Save Changes</NormalButton>
+          </div>
         </div>
         <!-- Profile Info Section -->
-        <div class="w-full flex flex-col gap-5">
+        <div class="w-full flex flex-col gap-3">
           <!-- Firstname and Lastname Section -->
           <div class="w-full flex items-center justify-between gap-5">
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="fname">Firstname</label>
+              <label for="fname" class="text-sm">Firstname</label>
               <CustomInput
                 type="text"
                 icon="person"
@@ -79,7 +91,7 @@ const accessOptions = ref({
               />
             </div>
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="lname">Lastname</label>
+              <label for="lname" class="text-sm">Lastname</label>
               <CustomInput
                 type="text"
                 icon="person"
@@ -89,10 +101,24 @@ const accessOptions = ref({
               />
             </div>
           </div>
-          <!-- Email and Phonenumber Section -->
+          <!-- Gender, Phonenumber and Address Section -->
           <div class="w-full flex items-center justify-between gap-5">
-            <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="phonenumber">Phone Number</label>
+            <div class="w-[30%] flex flex-col items-start gap-2">
+              <label for="gender" class="text-sm">Gender</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedGender"
+                  :options="genders"
+                  optionLabel="label"
+                  :placeholder="selectedGender"
+                  class="w-full"
+                />
+              </div>
+            </div>
+            <div class="w-[35%] flex flex-col items-start gap-2">
+              <label for="phonenumber" class="text-sm">Phone Number</label>
               <CustomInput
                 type="number"
                 icon="phone"
@@ -101,8 +127,8 @@ const accessOptions = ref({
                 placeholder="Phone Number"
               />
             </div>
-            <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="address">Address</label>
+            <div class="w-[35%] flex flex-col items-start gap-2">
+              <label for="address" class="text-sm">Address</label>
               <CustomInput
                 icon="location_on"
                 id="address"
@@ -111,9 +137,34 @@ const accessOptions = ref({
               />
             </div>
           </div>
+          <!-- Timing and Salary Section -->
+          <div class="w-full flex items-center justify-between gap-5">
+            <div class="w-1/2 flex flex-col items-start gap-2">
+              <label for="timing" class="text-sm">Timing</label>
+              <CustomInput
+                type="text"
+                icon="alarm"
+                id="timing"
+                name="timing"
+                placeholder="Timing"
+                disabled
+              />
+            </div>
+            <div class="w-1/2 flex flex-col items-start gap-2">
+              <label for="salary" class="text-sm">Salary</label>
+              <CustomInput
+                type="text"
+                icon="paid"
+                id="salary"
+                name="salary"
+                placeholder="Salary"
+                disabled
+              />
+            </div>
+          </div>
           <!-- Email Section -->
           <div class="w-full flex flex-col items-start gap-2">
-            <label for="email">Email</label>
+            <label for="email" class="text-sm">Email</label>
             <CustomInput
               type="email"
               icon="email"
@@ -125,7 +176,7 @@ const accessOptions = ref({
           <!-- Password and Confirm Password Section -->
           <div class="w-full flex items-center justify-between gap-5">
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="password">Password</label>
+              <label for="password" class="text-sm">Password</label>
               <CustomInput
                 icon="lock"
                 id="password"
@@ -135,7 +186,7 @@ const accessOptions = ref({
               />
             </div>
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="confirm-password">Confirm Password</label>
+              <label for="confirm-password" class="text-sm">Confirm Password</label>
               <CustomInput
                 icon="lock"
                 id="confirm-password"
@@ -144,13 +195,6 @@ const accessOptions = ref({
                 :isPassword="true"
               />
             </div>
-          </div>
-          <!-- Group Buttons Section -->
-          <div class="w-full flex items-center justify-end gap-2" v-if="editProfile">
-            <NormalButton type="reset" color="danger" @click="editProfile = false">
-              Discard Changes
-            </NormalButton>
-            <NormalButton type="submit" color="success">Save Changes</NormalButton>
           </div>
         </div>
       </form>

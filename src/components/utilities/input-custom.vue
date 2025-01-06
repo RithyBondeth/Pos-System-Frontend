@@ -29,7 +29,7 @@ const visibility = ref<boolean>(false);
 </script>
 <template>
   <div class="w-full flex justify-between items-center gap-4 p-4 rounded-3xl bg-light">
-    <GoogleIcon :icon="icon" v-if="icon == null ? false : true" />
+    <GoogleIcon :icon="icon" v-if="icon" />
     <input
       v-bind="$attrs"
       :type="isPassword ? (visibility ? 'text' : 'password') : type"

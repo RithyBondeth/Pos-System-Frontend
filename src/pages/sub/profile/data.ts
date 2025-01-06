@@ -5,3 +5,8 @@ export const profileMenus = [
     { label: "Manage Access", icon: "settings", navigator: ProfileNavigatorE.ManageAccess },
     { label: "Log out", icon: "logout", navigator: ProfileNavigatorE.Logout },
 ]
+
+export const gender = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+]
