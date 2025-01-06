@@ -55,13 +55,13 @@ const accessOptions = ref({
         <!-- Profile Image Section -->
         <div class="w-full flex justify-between items-center">
           <div class="flex items-center gap-5">
-            <div class="size-36 rounded-full bg-light"></div>
+            <div class="size-32 rounded-full bg-light"></div>
             <div class="flex flex-col items-start gap-1">
               <p class="text-lg font-bold">Hem Rithybondeth</p>
               <p class="text-md text-primary">Manager</p>
             </div>
           </div>
-          <NormalButton @click="editProfile = true" v-if="!editProfile">
+          <NormalButton @click="editProfile = true" v-if="!editProfile" class="text-xs">
             Edit Profile
           </NormalButton>
         </div>
@@ -118,29 +118,31 @@ const accessOptions = ref({
               placeholder="Email"
             />
           </div>
-          <!-- Password Section -->
-          <div class="w-full flex flex-col items-start gap-2">
-            <label for="password">Password</label>
-            <CustomInput
-              icon="lock"
-              id="password"
-              name="password"
-              placeholder="Password"
-              :isPassword="true"
-            />
+          <!-- Password and Confirm Password Section -->
+          <div class="w-full flex items-center justify-between gap-5">
+            <div class="w-1/2 flex flex-col items-start gap-2">
+              <label for="password">Password</label>
+              <CustomInput
+                icon="lock"
+                id="password"
+                name="password"
+                placeholder="Password"
+                :isPassword="true"
+              />
+            </div>
+            <div class="w-1/2 flex flex-col items-start gap-2">
+              <label for="confirm-password">Confirm Password</label>
+              <CustomInput
+                icon="lock"
+                id="confirm-password"
+                name="confirm-password"
+                placeholder="Confirm Password"
+                :isPassword="true"
+              />
+            </div>
           </div>
-          <!-- Confirm Password Section -->
-          <div class="w-full flex flex-col items-start gap-2">
-            <label for="confirm-password">Confirm Password</label>
-            <CustomInput
-              icon="lock"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Confirm Password"
-              :isPassword="true"
-            />
-          </div>
-          <div class="flex items-center justify-end gap-2" v-if="editProfile">
+          <!-- Group Buttons Section -->
+          <div class="w-full flex items-center justify-end gap-2" v-if="editProfile">
             <NormalButton type="reset" color="danger" @click="editProfile = false">
               Discard Changes
             </NormalButton>
