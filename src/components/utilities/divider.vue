@@ -1,5 +1,4 @@
-<script setup> 
-</script>
+<script setup></script>
 <template>
-    <div class="w-full h-px bg-light"/>
+  <div class="w-full h-px bg-light" />
 </template>
