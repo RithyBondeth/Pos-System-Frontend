@@ -17,3 +17,9 @@ export const role = [
     { label: "Cuisher", value: "cuisher" },
     { label: "Staff", value: "staff" }
 ];
+
+export const timing = [
+    { label: "Full Time (8AM - 6PM)", value: "fulltime" },
+    { label: "Morning (7AM - 12AM)", value: "morning" },
+    { label: "Afternoon (12AM - 6PM)", value: "afternoon" },
+]
