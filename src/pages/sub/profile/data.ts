@@ -10,3 +10,10 @@ export const gender = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
 ]
+
+export const role = [
+    { label: "Manager", value: "manager" },
+    { label: "Admin", value: "admin" },
+    { label: "Cuisher", value: "cuisher" },
+    { label: "Staff", value: "staff" }
+];
