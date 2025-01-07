@@ -3,7 +3,7 @@
 import GoogleIcon from "@/components/utilities/google-icon.vue";
 import CustomInput from "@/components/utilities/input-custom.vue";
 import Select from "primevue/select";
-import { gender, profileMenus } from "./data";
+import { gender, profileMenus, timing } from "./data";
 import { ref } from "vue";
 import { ProfileNavigatorE } from "./type";
 import SwitchButton from "@/components/utilities/switch-button.vue";
@@ -14,6 +14,9 @@ const profileNavigator = ref<ProfileNavigatorE>(ProfileNavigatorE.MyProfile);
 
 const selectedGender = ref(gender[0].label);
 const genders = ref(gender);
+
+const selectedTiming = ref(timing[0].label);
+const timings = ref(timing);
 
 const editProfile = ref<boolean>(false);
 const showDeleteUserModal = ref<boolean>(false);
@@ -140,15 +143,18 @@ const accessOptions = ref({
           <!-- Timing and Salary Section -->
           <div class="w-full flex items-center justify-between gap-5">
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="timing" class="text-sm">Timing</label>
-              <CustomInput
-                type="text"
-                icon="alarm"
-                id="timing"
-                name="timing"
-                placeholder="Timing"
-                disabled
-              />
+              <label for="timing" class="text-[15px]">Timing</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedTiming"
+                  :options="timings"
+                  optionLabel="label"
+                  :placeholder="selectedTiming"
+                  class="w-full"
+                />
+              </div>
             </div>
             <div class="w-1/2 flex flex-col items-start gap-2">
               <label for="salary" class="text-sm">Salary</label>

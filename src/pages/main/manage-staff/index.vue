@@ -6,7 +6,7 @@ import GoogleIcon from "@/components/utilities/google-icon.vue";
 import Divider from "@/components/utilities/divider.vue";
 import CustomInput from "@/components/utilities/input-custom.vue";
 import { Select } from "primevue";
-import { gender, role } from "@/pages/sub/profile/data";
+import { gender, role, timing } from "@/pages/sub/profile/data";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -15,6 +15,7 @@ const router = useRouter();
 const showAddNewStaff = ref<boolean>(false);
 const showEditStaffModal = ref<boolean>(false);
 const showDeleteStaffModal = ref<boolean>(false);
+const showStaffFilterModal = ref<boolean>(false);
 
 const imageFileInput = ref<HTMLInputElement | null>(null);
 const imageFileUrl = ref<String | null>(null);
@@ -38,8 +39,46 @@ const clearImageFile = (): void => {
 
 const selectedGender = ref(gender[0].label);
 const genders = ref(gender);
+
 const selectedRole = ref(role[0].label);
 const roles = ref(role);
+
+const selectedTiming = ref(timing[0].label);
+const timings = ref(timing);
+
+//Filter Modal
+const _sortByNames = [
+  { label: "From A to Z", value: "az" },
+  { label: "From Z to A", value: "za" },
+];
+const selectedSortByName = ref(_sortByNames[0].label);
+const sortByNames = ref(_sortByNames);
+
+const _sortByAges = [
+  { label: "From Younger to Older", value: "az" },
+  { label: "From Older to Younger", value: "za" },
+];
+const selectedSortByAge = ref(_sortByAges[0].label);
+const sortByAges = ref(_sortByAges);
+
+const _sortByGender = [...gender, { label: "All", value: "all" }];
+const selectedSortByGender = ref(_sortByGender[gender.length].label);
+const sortByGender = ref(_sortByGender);
+
+const _sortBySalary = [
+  { label: "From Low to High", value: "az" },
+  { label: "From High to Low", value: "za" },
+];
+const selectedSortBySalary = ref(_sortBySalary[0].label);
+const sortBySalary = ref(_sortBySalary);
+
+const _sortByRoles = [...role, { label: "All", value: "all" }];
+const selectedSortByRole = ref(_sortByRoles[role.length].label);
+const sortByRoles = ref(_sortByRoles);
+
+const _sortByTiming = [...timing, { label: "All", value: "all" }];
+const selectedSortByTiming = ref(_sortByTiming[timing.length].label);
+const sortByTiming = ref(_sortByTiming);
 </script>
 
 <template>
@@ -51,7 +90,9 @@ const roles = ref(role);
       <p class="text-lg font-bold">Staff (22)</p>
       <div class="flex items-center gap-2">
         <NormalButton @click="showAddNewStaff = true">Add New Staff</NormalButton>
-        <IconButton icon="arrow_drop_down_circle">Sort By</IconButton>
+        <IconButton icon="arrow_drop_down_circle" @click="showStaffFilterModal = true">
+          Sort By
+        </IconButton>
       </div>
     </div>
     <!-- Table Section -->
@@ -230,13 +271,17 @@ const roles = ref(role);
             <!-- Staff Timing Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="timing" class="text-[15px]">Timing</label>
-              <CustomInput
-                icon="alarm"
-                type="text"
-                id="timing"
-                name="timing"
-                placeholder="Enter Timing"
-              />
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedTiming"
+                  :options="timings"
+                  optionLabel="label"
+                  :placeholder="selectedTiming"
+                  class="w-full"
+                />
+              </div>
             </div>
             <!-- Staff Role Section -->
             <div class="w-full flex flex-col items-start gap-2">
@@ -419,13 +464,17 @@ const roles = ref(role);
             <!-- Staff Timing Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="timing" class="text-[15px]">Timing</label>
-              <CustomInput
-                icon="alarm"
-                type="text"
-                id="timing"
-                name="timing"
-                placeholder="Enter Timing"
-              />
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedTiming"
+                  :options="timings"
+                  optionLabel="label"
+                  :placeholder="selectedTiming"
+                  class="w-full"
+                />
+              </div>
             </div>
             <!-- Staff Role Section -->
             <div class="w-full flex flex-col items-start gap-2">
@@ -509,6 +558,121 @@ const roles = ref(role);
           <NormalButton color="success" class="px-3" type="submit">Yes</NormalButton>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Filter Modal Section -->
+  <div class="modal-background" v-if="showStaffFilterModal">
+    <div class="modal modal-width rounded-xl p-5 bg-white">
+      <div class="flex flex-col items-start gap-2">
+        <!-- Filter Header Section -->
+        <div class="w-full space-y-2">
+          <div class="w-full flex justify-between items-center">
+            <h2 class="text-xl font-bold">Filter Staff</h2>
+            <GoogleIcon icon="close" @click="showStaffFilterModal = false" />
+          </div>
+          <Divider />
+        </div>
+        <!-- Filter Information Section -->
+        <form action="" class="w-full flex flex-col gap-5">
+          <div class="flex items-center gap-2">
+            <!-- Sort By Name Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-name" class="text-[15px]">Sort By Name</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortByName"
+                  :options="sortByNames"
+                  optionLabel="label"
+                  :placeholder="selectedSortByName"
+                  class="w-full"
+                />
+              </div>
+            </div>
+            <!-- Sort By Age Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-age" class="text-[15px]">Sort By Age</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortByAge"
+                  :options="sortByAges"
+                  optionLabel="label"
+                  :placeholder="selectedSortByAge"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
+            <!-- Sort By Gender Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-gender" class="text-[15px]">Sort By Gender</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortByGender"
+                  :options="sortByGender"
+                  optionLabel="label"
+                  :placeholder="selectedSortByGender"
+                  class="w-full"
+                />
+              </div>
+            </div>
+            <!-- Sort By Salary Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-salary" class="text-[15px]">Sort By Salary</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortBySalary"
+                  :options="sortBySalary"
+                  optionLabel="label"
+                  :placeholder="selectedSortBySalary"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
+            <!-- Sort By Role Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-role" class="text-[15px]">Sort By Role</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortByRole"
+                  :options="sortByRoles"
+                  optionLabel="label"
+                  :placeholder="selectedSortByRole"
+                  class="w-full"
+                />
+              </div>
+            </div>
+            <!-- Sort By Timing Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="sortby-timing" class="text-[15px]">Sort By Timing</label>
+              <div
+                class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
+              >
+                <Select
+                  v-model="selectedSortByTiming"
+                  :options="sortByTiming"
+                  optionLabel="label"
+                  :placeholder="selectedSortByTiming"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
