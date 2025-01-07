@@ -50,7 +50,7 @@ const clearImageFile = (): void => {
 </script>
 
 <template>
-  <div class="h-screen w-full p-5 flex flex-col items-start gap-5">
+  <div class="h-screen w-full p-5 flex flex-col items-start gap-5 laptop:h-full">
     <!-- Header Label -->
     <h2 class="text-2xl font-bold">Manage Stock</h2>
 
@@ -64,9 +64,11 @@ const clearImageFile = (): void => {
     </div>
 
     <!-- Manage Stock Section -->
-    <div class="size-full overflow-x-scroll flex justify-between items-scretch gap-5">
+    <div
+      class="size-full overflow-x-scroll flex justify-between items-scretch gap-5 laptop:flex-col"
+    >
       <!-- Left Side Section -->
-      <form class="w-[30%] rounded-lg flex flex-col gap-5 p-5 bg-white">
+      <form class="w-[30%] rounded-lg flex flex-col gap-5 p-5 bg-white laptop:w-full">
         <!-- Product Status Section -->
         <div class="space-y-3">
           <p class="font-bold">Product Status</p>
@@ -145,7 +147,9 @@ const clearImageFile = (): void => {
       </form>
 
       <!-- Right Side Section -->
-      <div class="w-[70%] overflow-y-scroll no-scrollbar rounded-lg bg-white">
+      <div
+        class="w-[70%] overflow-y-scroll no-scrollbar rounded-lg bg-white laptop:w-full"
+      >
         <table class="w-full">
           <!-- head -->
           <thead>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "@/pages/main/dashboard/index.vue";
 import ManageStaff from "@/pages/main/manage-staff/index.vue";
+import DetailStaff from "@/pages/main/manage-staff/id/index.vue";
 import Product from "@/pages/main/product/index.vue";
 import SaleReports from "@/pages/main/sale-reports/index.vue";
 import ManageStock from "@/pages/main/manage-stock/index.vue";
@@ -33,6 +34,11 @@ const routes = [
         path: '/managestaff',
         name: 'Manage Staff',
         component: ManageStaff,
+    },
+    {
+        path: '/managestaff/:id',
+        name: 'Detail Staff',
+        component: DetailStaff,
     },
     {
         path: '/setting',
