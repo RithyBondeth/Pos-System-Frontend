@@ -1,10 +1,5 @@
-<script lang="ts" setup>
-// @ts-nocheck
-import DefaultLayout from "@/layouts/DefaultLayout.vue";
-</script>
+<script lang="ts" setup></script>
 
 <template>
-    <DefaultLayout>
-        <router-view/>
-    </DefaultLayout>
+  <router-view />
 </template>

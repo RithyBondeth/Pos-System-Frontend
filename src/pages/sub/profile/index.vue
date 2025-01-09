@@ -3,7 +3,7 @@
 import GoogleIcon from "@/components/utilities/google-icon.vue";
 import CustomInput from "@/components/utilities/input-custom.vue";
 import Select from "primevue/select";
-import { gender, profileMenus, timing } from "./data";
+import { gender, profileMenus, shift } from "./data";
 import { ref } from "vue";
 import { ProfileNavigatorE } from "./type";
 import SwitchButton from "@/components/utilities/switch-button.vue";
@@ -15,8 +15,8 @@ const profileNavigator = ref<ProfileNavigatorE>(ProfileNavigatorE.MyProfile);
 const selectedGender = ref(gender[0].label);
 const genders = ref(gender);
 
-const selectedTiming = ref(timing[0].label);
-const timings = ref(timing);
+const selectedShift = ref(shift[0].label);
+const shifts = ref(shift);
 
 const editProfile = ref<boolean>(false);
 const showDeleteUserModal = ref<boolean>(false);
@@ -104,9 +104,9 @@ const accessOptions = ref({
               />
             </div>
           </div>
-          <!-- Gender, Phonenumber and Address Section -->
+          <!-- Gender and Date Of Birth Section -->
           <div class="w-full flex items-center justify-between gap-5">
-            <div class="w-[30%] flex flex-col items-start gap-2">
+            <div class="w-1/2 flex flex-col items-start gap-2">
               <label for="gender" class="text-sm">Gender</label>
               <div
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
@@ -120,7 +120,14 @@ const accessOptions = ref({
                 />
               </div>
             </div>
-            <div class="w-[35%] flex flex-col items-start gap-2">
+            <div class="w-1/2 flex flex-col items-start gap-2">
+              <label for="dob" class="text-sm">Date of Birth</label>
+              <CustomInput type="date" icon="cake" id="dob" name="dob" />
+            </div>
+          </div>
+          <!-- Phonenumber and Address Section -->
+          <div class="w-full flex items-center justify-between gap-5">
+            <div class="w-1/2 flex flex-col items-start gap-2">
               <label for="phonenumber" class="text-sm">Phone Number</label>
               <CustomInput
                 type="number"
@@ -130,7 +137,7 @@ const accessOptions = ref({
                 placeholder="Phone Number"
               />
             </div>
-            <div class="w-[35%] flex flex-col items-start gap-2">
+            <div class="w-1/2 flex flex-col items-start gap-2">
               <label for="address" class="text-sm">Address</label>
               <CustomInput
                 icon="location_on"
@@ -140,18 +147,18 @@ const accessOptions = ref({
               />
             </div>
           </div>
-          <!-- Timing and Salary Section -->
+          <!-- Shift and Salary Section -->
           <div class="w-full flex items-center justify-between gap-5">
             <div class="w-1/2 flex flex-col items-start gap-2">
-              <label for="timing" class="text-[15px]">Timing</label>
+              <label for="shift" class="text-[15px]">Shift</label>
               <div
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
               >
                 <Select
-                  v-model="selectedTiming"
-                  :options="timings"
+                  v-model="selectedShift"
+                  :options="shifts"
                   optionLabel="label"
-                  :placeholder="selectedTiming"
+                  :placeholder="selectedShift"
                   class="w-full"
                 />
               </div>

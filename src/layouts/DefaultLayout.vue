@@ -9,7 +9,7 @@ import Sidebar from "@/components/sidebar/index.vue";
     <Sidebar />
     <!-- Main Content -->
     <main class="overflow-x-hidden w-full">
-      <slot />
+      <router-view />
     </main>
   </div>
 </template>
