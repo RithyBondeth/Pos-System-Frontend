@@ -37,7 +37,7 @@ const routes = [
     },
     {
         path: '/managestaff/:id',
-        name: 'Detail Staff',
+        name: 'Manage Staff Detail',
         component: DetailStaff,
     },
     {
