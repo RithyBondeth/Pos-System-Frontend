@@ -62,14 +62,14 @@ onUnmounted(() => {
 
     <!-- Sidebar Menu -->
     <div v-for="item in sidebarMenu" :key="item.id">
-      <router-link :to="{ name: item.route }">
+      <router-link :to="{ name: item.route[0] }">
         <SidebarMenu
           :label="item.label"
           :icon="item.icon"
           :class="[
             closeSidebar && '!text-[0px] [&>span]:ml-3',
             'h-12 duration-300 transition-all overflow-hidden',
-            route.name == item.route && 'bg-primary text-white',
+            item.route.includes(route.name) && 'bg-primary text-white',
           ]"
         />
       </router-link>

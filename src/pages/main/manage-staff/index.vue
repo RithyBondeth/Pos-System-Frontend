@@ -574,7 +574,7 @@ const sortByTiming = ref(_sortByTiming);
           <Divider />
         </div>
         <!-- Filter Information Section -->
-        <form action="" class="w-full flex flex-col gap-5">
+        <form action="" class="w-full flex flex-col gap-5 mt-3">
           <div class="flex items-center gap-2">
             <!-- Sort By Name Section -->
             <div class="w-full flex flex-col items-start gap-2">
@@ -670,6 +670,11 @@ const sortByTiming = ref(_sortByTiming);
                 />
               </div>
             </div>
+          </div>
+          <!-- Group Button Section -->
+          <div class="w-full flex justify-end gap-2">
+            <NormalButton color="dark" type="reset">Cancel</NormalButton>
+            <NormalButton type="submit">Save</NormalButton>
           </div>
         </form>
       </div>

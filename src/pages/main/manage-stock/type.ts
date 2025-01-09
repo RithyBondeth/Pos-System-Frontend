@@ -2,7 +2,7 @@ export enum ProductStatusE {
     All = 'All',
     Active = 'Active',
     Inactive = 'Inactive',
-    Draft = 'draft'
+    Draft = 'Draft'
 }
 
 export enum ProductStockE {
