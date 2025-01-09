@@ -65,7 +65,7 @@ const staffInfo = ref({
           <div
             class="w-full flex justify-between p-5 rounded-lg bg-white tablet-lg:flex-col tablet-lg:gap-5"
           >
-            <div class="w-1/2 flex flex-col gap-5 tablet-lg:w-full">
+            <div class="w-1/2 flex flex-col gap-8 tablet-lg:w-full">
               <!-- Full Name Section -->
               <ProfileInfoBox
                 label="Full Name"
@@ -87,7 +87,7 @@ const staffInfo = ref({
                 icon="location_on"
               />
             </div>
-            <div class="w-1/2 flex flex-col gap-5 tablet-lg:w-full">
+            <div class="w-1/2 flex flex-col gap-8 tablet-lg:w-full">
               <!-- Gender Section -->
               <ProfileInfoBox
                 label="Gender"
@@ -111,7 +111,7 @@ const staffInfo = ref({
           <div
             class="w-full flex justify-between p-5 rounded-lg bg-white phone-xl:flex-col phone-xl:gap-5"
           >
-            <div class="w-1/2 flex flex-col gap-5 phone-xl:w-full">
+            <div class="w-1/2 flex flex-col gap-8 phone-xl:w-full">
               <!-- Role Section -->
               <ProfileInfoBox
                 label="Role"
@@ -125,7 +125,7 @@ const staffInfo = ref({
                 icon="alarm"
               />
             </div>
-            <div class="w-1/2 flex flex-col gap-5 phone-xl:w-full">
+            <div class="w-1/2 flex flex-col gap-8 phone-xl:w-full">
               <!-- Salary Section Section -->
               <ProfileInfoBox label="Salary" :info="staffInfo.salary" icon="paid" />
               <!-- Shift Time Section -->

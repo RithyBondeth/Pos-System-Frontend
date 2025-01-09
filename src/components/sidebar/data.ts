@@ -1,4 +1,4 @@
-export const appLogo: string = "src/assets/logo.png";
+export const appLogo: string = "/src/assets/logo.png";
 export const sidebarMenu = [
     { id: 1, icon: "dashboard", label: "Dashboard", route: ['Dashboard'] },
     { id: 2, icon: "inventory_2", label: "Product", route: ['Product'] },
