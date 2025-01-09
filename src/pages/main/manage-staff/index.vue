@@ -6,7 +6,7 @@ import GoogleIcon from "@/components/utilities/google-icon.vue";
 import Divider from "@/components/utilities/divider.vue";
 import CustomInput from "@/components/utilities/input-custom.vue";
 import { Select } from "primevue";
-import { gender, role, timing } from "@/pages/sub/profile/data";
+import { gender, role, shift } from "@/pages/sub/profile/data";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -43,8 +43,8 @@ const genders = ref(gender);
 const selectedRole = ref(role[0].label);
 const roles = ref(role);
 
-const selectedTiming = ref(timing[0].label);
-const timings = ref(timing);
+const selectedshift = ref(shift[0].label);
+const shifts = ref(shift);
 
 //Filter Modal
 const _sortByNames = [
@@ -76,13 +76,22 @@ const _sortByRoles = [...role, { label: "All", value: "all" }];
 const selectedSortByRole = ref(_sortByRoles[role.length].label);
 const sortByRoles = ref(_sortByRoles);
 
-const _sortByTiming = [...timing, { label: "All", value: "all" }];
-const selectedSortByTiming = ref(_sortByTiming[timing.length].label);
-const sortByTiming = ref(_sortByTiming);
+const _sortByshift = [...shift, { label: "All", value: "all" }];
+const selectedSortByshift = ref(_sortByshift[shift.length].label);
+const sortByshift = ref(_sortByshift);
 </script>
 
 <template>
-  <div class="w-full h-screen flex flex-col items-start gap-5 p-5">
+  <div
+    :class="[
+      'w-full h-screen flex flex-col items-start gap-5 p-5',
+      (showAddNewStaff ||
+        showEditStaffModal ||
+        showDeleteStaffModal ||
+        showStaffFilterModal) &&
+        'fixed',
+    ]"
+  >
     <!-- Header Label -->
     <p class="text-2xl font-bold">Staff Management</p>
     <!-- Menu Section -->
@@ -108,7 +117,7 @@ const sortByTiming = ref(_sortByTiming);
             <th>Age</th>
             <th>Gender</th>
             <th>Salary</th>
-            <th>Timing</th>
+            <th>shift</th>
             <th></th>
           </tr>
         </thead>
@@ -244,6 +253,13 @@ const sortByTiming = ref(_sortByTiming);
                 />
               </div>
             </div>
+            <!-- Staff Date Of Birth number Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="dob" class="text-[15px]">Date Of Birth</label>
+              <CustomInput icon="cake" type="date" id="dob" name="dob" />
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
             <!-- Staff Phone number Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="phonenumber" class="text-[15px]">Phone Nmber</label>
@@ -268,17 +284,17 @@ const sortByTiming = ref(_sortByTiming);
             </div>
           </div>
           <div class="w-full flex items-center justify-between gap-2">
-            <!-- Staff Timing Section -->
+            <!-- Staff shift Section -->
             <div class="w-full flex flex-col items-start gap-2">
-              <label for="timing" class="text-[15px]">Timing</label>
+              <label for="shift" class="text-[15px]">Shift Time</label>
               <div
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
               >
                 <Select
-                  v-model="selectedTiming"
-                  :options="timings"
+                  v-model="selectedshift"
+                  :options="shifts"
                   optionLabel="label"
-                  :placeholder="selectedTiming"
+                  :placeholder="selectedshift"
                   class="w-full"
                 />
               </div>
@@ -437,6 +453,13 @@ const sortByTiming = ref(_sortByTiming);
                 />
               </div>
             </div>
+            <!-- Staff Date Of Birth number Section -->
+            <div class="w-full flex flex-col items-start gap-2">
+              <label for="dob" class="text-[15px]">Date Of Birth</label>
+              <CustomInput icon="cake" type="date" id="dob" name="dob" />
+            </div>
+          </div>
+          <div class="w-full flex items-center justify-between gap-2">
             <!-- Staff Phone number Section -->
             <div class="w-full flex flex-col items-start gap-2">
               <label for="phonenumber" class="text-[15px]">Phone Nmber</label>
@@ -461,17 +484,17 @@ const sortByTiming = ref(_sortByTiming);
             </div>
           </div>
           <div class="w-full flex items-center justify-between gap-2">
-            <!-- Staff Timing Section -->
+            <!-- Staff shift Section -->
             <div class="w-full flex flex-col items-start gap-2">
-              <label for="timing" class="text-[15px]">Timing</label>
+              <label for="shift" class="text-[15px]">Shift Time</label>
               <div
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
               >
                 <Select
-                  v-model="selectedTiming"
-                  :options="timings"
+                  v-model="selectedshift"
+                  :options="shifts"
                   optionLabel="label"
-                  :placeholder="selectedTiming"
+                  :placeholder="selectedshift"
                   class="w-full"
                 />
               </div>
@@ -655,17 +678,17 @@ const sortByTiming = ref(_sortByTiming);
                 />
               </div>
             </div>
-            <!-- Sort By Timing Section -->
+            <!-- Sort By shift Section -->
             <div class="w-full flex flex-col items-start gap-2">
-              <label for="sortby-timing" class="text-[15px]">Sort By Timing</label>
+              <label for="sortby-shift" class="text-[15px]">Sort By Shift</label>
               <div
                 class="flex justify-center custom-input [&>div>span]:!text-accent-light [&>div>div>svg]:!text-accent-light"
               >
                 <Select
-                  v-model="selectedSortByTiming"
-                  :options="sortByTiming"
+                  v-model="selectedSortByshift"
+                  :options="sortByshift"
                   optionLabel="label"
-                  :placeholder="selectedSortByTiming"
+                  :placeholder="selectedSortByshift"
                   class="w-full"
                 />
               </div>

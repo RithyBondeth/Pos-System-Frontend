@@ -18,10 +18,10 @@ defineProps({
 </script>
 <template>
   <div class="flex flex-col items-start gap-1">
-    <p class="text-sm text-primary">{{ label }}</p>
+    <p class="text-sm text-primary phone-xl:text-xs">{{ label }}</p>
     <div class="flex items-center gap-1">
-      <GoogleIcon :icon="icon" />
-      <p>{{ info }}</p>
+      <GoogleIcon :icon="icon" class="phone-xl:text-xs" />
+      <p class="phone-xl:text-xs">{{ info }}</p>
     </div>
   </div>
 </template>

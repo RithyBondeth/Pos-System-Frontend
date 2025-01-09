@@ -1,5 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>Sign up</div>
+  <div>
+    <h1>Sign in Page</h1>
+  </div>
 </template>

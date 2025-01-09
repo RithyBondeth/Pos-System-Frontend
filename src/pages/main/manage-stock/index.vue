@@ -50,7 +50,12 @@ const clearImageFile = (): void => {
 </script>
 
 <template>
-  <div class="h-screen w-full p-5 flex flex-col items-start gap-5 laptop:h-full">
+  <div
+    :class="[
+      'h-screen w-full p-5 flex flex-col items-start gap-5 laptop:h-full',
+      (showAddStockModal || showEditStockModal || showDeleteStockModal) && 'fixed',
+    ]"
+  >
     <!-- Header Label -->
     <h2 class="text-2xl font-bold">Manage Stock</h2>
 
