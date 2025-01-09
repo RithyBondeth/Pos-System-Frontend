@@ -48,7 +48,7 @@ const clearImageFile = (): void => {
 <template>
   <div
     :class="[
-      'p-5 flex flex-col items-start gap-8',
+      'p-5 flex flex-col items-start gap-8 w-full',
       (showAddProductModal ||
         showCategoryModal ||
         showEditProductModal ||
