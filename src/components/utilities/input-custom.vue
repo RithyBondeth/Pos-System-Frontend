@@ -5,12 +5,13 @@ import { ref } from "vue";
 defineProps({
   type: {
     type: String,
-    required: true,
+    required: false,
+    default: "text",
     enum: ["text", "email", "number", "password"],
   },
   icon: {
     type: String,
-    required: true,
+    required: false,
   },
   placeholder: {
     type: String,

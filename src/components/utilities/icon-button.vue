@@ -4,7 +4,7 @@ import GoogleIcon from "./google-icon.vue";
 defineProps({
   color: {
     type: String,
-    required: true,
+    required: false,
     default: "primary",
     validator: (value: string) =>
       ["primary", "secondary", "success", "warning", "danger", "light", "dark"].includes(

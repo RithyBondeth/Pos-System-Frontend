@@ -97,7 +97,7 @@ const staffInfo = ref({
               <!-- Age Section -->
               <ProfileInfoBox
                 label="Age"
-                :info="ageCalculation(staffInfo.dob)"
+                :info="ageCalculation(staffInfo.dob).toString()"
                 icon="person"
               />
               <!-- Date Of Birth Section -->

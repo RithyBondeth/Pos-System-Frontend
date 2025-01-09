@@ -9,7 +9,7 @@ defineProps({
     required: true,
   },
   order: {
-    type: Number,
+    type: String,
     required: true,
   },
   price: {
